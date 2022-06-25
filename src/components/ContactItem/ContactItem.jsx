@@ -1,15 +1,16 @@
 import React from "react";
+import PropTypes from 'prop-types';
 // import { nanoid } from 'nanoid'
 
 
-const ContactItem = ( {id, name, number, deleteContact } ) => {
+const ContactItem = ( {name, number, contactId, deleteContact } ) => {
     return (
-        <li key={id}>
+        <li >
             <p>{name}:</p>
             <p>{number}</p>
             <button
                 type="button"
-                onClick={() => deleteContact(id)}
+                onClick={() => deleteContact(contactId)}
             >
             Delete
             </button>
@@ -17,5 +18,10 @@ const ContactItem = ( {id, name, number, deleteContact } ) => {
     );
 };
 
-
+ContactItem.propTypes = {
+    contactId: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+    deleteContact: PropTypes.func.isRequired,
+}
 export default ContactItem;

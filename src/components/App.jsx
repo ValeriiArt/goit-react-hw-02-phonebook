@@ -16,11 +16,26 @@ export class App extends Component {
     filter: '',
   }
 
+  addContact = (newContacts) => {
+    if (
+      this.state.contacts.find(contact =>{
+        return contact.name.toLowerCase().trim() === newContacts.name.toLowerCase().trim();
+      })
+      ) {
+        alert(`${newContacts.name} is already in contacts`);
+        return;
+      }
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, newContacts],
+      }));
+    }
+    
   onChangeFilter = evt => {
     this.setState({
       filter: evt.currentTarget.value,
     });
   };
+
 
   findContact = () => {
     const { contacts, filter } = this.state;
@@ -28,24 +43,6 @@ export class App extends Component {
       contact.name.toLowerCase().trim().includes(filter.toLowerCase().trim())
     );
   };
-
-  addContact = (newContacts) => {
-    if (
-      this.state.contacts.find(
-        contact =>
-        {
-          // console.log(contact);
-         return contact.name.toLowerCase().trim() === newContacts.name.toLowerCase().trim();
-          
-      })
-    ) {
-      alert(`${newContacts.name} is already in contacts`);
-      return;
-    }
-    this.setState(prevState => ({
-        contacts: [...prevState.contacts, newContacts],
-      }));
-  }
 
   handleDeleteContact = id => {
     this.setState(prevState => ({
