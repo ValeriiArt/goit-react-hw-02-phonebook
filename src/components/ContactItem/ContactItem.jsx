@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import s from './ContactItem.module.css'
 // import { nanoid } from 'nanoid'
 
 
 const ContactItem = ( {name, number, contactId, deleteContact } ) => {
     return (
         <li >
-            <p>{name}:</p>
-            <p>{number}</p>
+            <p className={s.itemText}>{name}:</p>
+            <p className={s.itemText}>{number}</p>
             <button
                 type="button"
                 onClick={() => deleteContact(contactId)}
